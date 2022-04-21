@@ -8,7 +8,7 @@ import NotFound from './components/NotFound'
 
 const App = () => {
   return (
-    <AnimatePresence>
+    <AnimatePresence exitBeforeEnter >
         <div className='h-screen w-screen flex flex-col' >
       <Header />
       

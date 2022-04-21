@@ -41,7 +41,7 @@ module.exports = {
       colors: {
         textColor: '#515151',
         headingColor: "#2e2e2e",
-        cartNumBg: "#e80013",
+        cartNumBg: "#FEB400",
         primary: "#f5f3f3"
       },
       screens: {

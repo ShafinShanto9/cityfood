@@ -102,8 +102,15 @@ const Header = () => {
               </motion.div>
         </Link>
         
+        <div className='relative flex items-center justify-center gap-7' > 
+            <div className='relative flex items-center justify-center'>
+          <MdShoppingBag className='text-textColor text-2xl cursor-pointer' />
+          <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
+            <p className='text-xs text-textColor font-semibold'>2</p>
+            </div>   
+          </div>
 
-         <div className='relative'>  
+
             <motion.img whileTap={{ scale: 0.6 }} src={user ? user?.photoURL : Avatar} onClick={login} className="w-10 min-w-[40px] h-10 min-h-[40px] cursor-pointer rounded-full " alt="userprofile" />
             {
               isMenu && (

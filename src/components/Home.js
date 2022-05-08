@@ -1,6 +1,7 @@
-import React from 'react'
-import Delivary from '../img/delivery.png'
 import { motion } from 'framer-motion';
+import React from 'react';
+import Delivary from '../img/delivery.png';
+import { heroData } from '../utils/data';
 
 const Home = () => {
   return (
@@ -29,10 +30,15 @@ const Home = () => {
           </div>
           
           
-        <div className='py-2 flex-1 bg-[#ffc75f80] flex items-center '>
-              <div className='w-full h-full flex items-center justify-center'>
-                    
-              </div> 
+        <div className='w-full h-full py-4 flex items-center justify-center gap-8 flex-wrap mt-12 lg:px-32 px-1'>
+        {heroData?.map(data => (
+          <div key={data.id} className='lg:w-190 p-4 bg-cardOverlay backdrop-blur-md rounded-3xl shadow-xl flex flex-col items-center justify-center cursor-pointer drop-shadow-lg'> 
+            <img src={data.imageSrc} className="w-20 lg:w-40 lg:-mt-20 -mt-10 " alt="Icecreame" />
+              <p className='text-base font-semibold'>{ data.name}</p>
+              <p className='text-[12px] lg:text-sm text-gray-600 my-1 lg:my-2 text-center'>{ data.desc}</p>
+            <p className='text-sm text-semibold'> <span className='text-yellow-600'>$</span> {data.price} </p>
+            </div>
+          ))} 
         </div>
     </section>
     

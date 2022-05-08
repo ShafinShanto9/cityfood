@@ -1,7 +1,7 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import { MdShoppingBag,MdAdd, MdLogout } from "react-icons/md";
+import { MdAdd, MdLogout, MdShoppingBag } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { actionType } from '../context/reducer';
 import { useStateValue } from '../context/StateProvider';
@@ -83,7 +83,9 @@ const Header = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.6 }}
                 className="w-40 absolute flex flex-col bg-gray-100 rounded-lg shadow-xl  top-12 right-0" >
-                <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base">New Item <MdAdd/></p>
+                  <Link to='/createItem'>
+                    <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base" onClick={()=>setIsMenu(false)}>New Item <MdAdd/></p>
+                  </Link>
                 <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-red-400 hover:text-white transition-all duration-100 ease-in-out text-textColor text-base" onClick={logOut}>Logout <MdLogout/></p>
                 </motion.div>
               )
@@ -119,13 +121,15 @@ const Header = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.6 }}
                 className="w-40 absolute flex flex-col bg-gray-100 rounded-lg shadow-xl  top-12 right-0" >
-                <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base">New Item <MdAdd /></p>
+                <Link to="/createItem">
+                  <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base" onClick={()=>setIsMenu(false)}>New Item <MdAdd /></p>
+                </Link>
                 <ul
                     className='flex flex-col '>
-                    <li className='text-base text-textColor duration-100 transition-all ease-in-out hover:text-headingColor cursor-pointer px-4 py-2'>Home</li>
-                    <li className='text-base text-textColor duration-100 transition-all ease-in-out hover:text-headingColor cursor-pointer px-4 py-2'>Menu</li>
-                    <li className='text-base text-textColor duration-100 transition-all ease-in-out hover:text-headingColor cursor-pointer px-4 py-2'>About Us</li>
-                    <li className='text-base text-textColor duration-100 transition-all ease-in-out hover:text-headingColor cursor-pointer px-4 py-2'>Service</li>
+                    <li className='text-base text-textColor duration-100 transition-all ease-in-out hover:text-headingColor cursor-pointer px-4 py-2' onClick={()=>setIsMenu(false)}>Home</li>
+                    <li className='text-base text-textColor duration-100 transition-all ease-in-out hover:text-headingColor cursor-pointer px-4 py-2' onClick={()=>setIsMenu(false)}>Menu</li>
+                    <li className='text-base text-textColor duration-100 transition-all ease-in-out hover:text-headingColor cursor-pointer px-4 py-2' onClick={()=>setIsMenu(false)}>About Us</li>
+                    <li className='text-base text-textColor duration-100 transition-all ease-in-out hover:text-headingColor cursor-pointer px-4 py-2' onClick={()=>setIsMenu(false)}>Service</li>
                   </ul>
                 <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-red-400 hover:text-white transition-all duration-100 ease-in-out text-textColor text-base" onClick={logOut}>Logout <MdLogout/></p>
                 </motion.div>

@@ -9,3 +9,41 @@ export const heroData = [
     {id: 3, name: 'Chicken', desc: 'Chicken Legpices', price: '9.99', imageSrc:C7 },
     {id: 4, name: 'Fish', desc: 'Spaical Fish Fry', price: '8.99', imageSrc:FI3 },
 ]
+
+export const Categories = [
+  {
+    id: 1,
+    name: "Chicken",
+    urlParamName: "chicken",
+  },
+  {
+    id: 2,
+    name: "Curry",
+    urlParamName: "curry",
+  },
+  {
+    id: 3,
+    name: "Rice",
+    urlParamName: "rice",
+  },
+  {
+    id: 4,
+    name: "Fish",
+    urlParamName: "fish",
+  },
+  {
+    id: 5,
+    name: "Fruits",
+    urlParamName: "fruits",
+  },
+  {
+    id: 6,
+    name: "Icecreans",
+    urlParamName: "icecreams",
+  },
+  {
+    id: 7,
+    name: "Soft Drinks",
+    urlParamName: "drinks",
+  },
+];

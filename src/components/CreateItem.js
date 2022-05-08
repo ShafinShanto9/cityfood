@@ -1,20 +1,32 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import { MdFastfood } from 'react-icons/md';
+import { MdFastfood, MdCloudUpload, MdDelete, MdFoodBank, MdAttachMoney } from 'react-icons/md';
 import { Categories } from '../utils/data';
 import Loader from './Loader';
 
 const CreateItem = () => {
 
   const [title, setTitle] = useState('')
-  const [categories, setCategories] = useState('')
+  const [calorise, setCalorise] = useState('')
   const [price, setPrice] = useState('')
   const [category, setCategory] = useState(null)
   const [imageAssests, setImageAssests] = useState(false)
   const [fields, setFields] = useState(false)
   const [alertStatus, setAlertStatus] = useState('danger')
   const [msg, setMsg] = useState(null)
-  const [isLoading, SetIsLoading] = useState(true)
+  const [isLoading, SetIsLoading] = useState(false)
+
+  const uploadImage = () => {
+
+  }
+
+  const deleteImage = () => {
+
+  }
+
+  const saveDetails = () => {
+
+  }
 
   return (
     <div className='w-full min-h-screen flex items-center justify-center '>
@@ -38,7 +50,7 @@ const CreateItem = () => {
             value={title}
             placeholder="Give me a title....."
             onChange={(e)=> setTitle(e.target.value)}
-            className='w-full h-full text-lg bg-transparent font-semibold p-2 outline-none border-none placeholder:text-gray-00 text-textColor'
+            className='w-full h-full text-lg bg-transparent p-2 outline-none border-none placeholder:text-gray-00 text-textColor'
           
           />
         </div>
@@ -60,11 +72,48 @@ const CreateItem = () => {
         <div className='group flex justify-center items-center flex-col border-2 border-dashed border-gray-300
         h-225 md:h-410 cursor-pointer w-full rounded-xl '>
           {
-            isLoading && <Loader/>
-          }
-            
+            isLoading ? <Loader /> : <>
+              {!imageAssests ? <>
+                <label className='w-full h-full flex flex-col justify-center items-center cursor-pointer'>
+                  <div className='w-full h-full flex flex-col justify-center items-center gap-2' >
+                    <MdCloudUpload className='text-3xl text-yellow-600 ' />
+                    <p className='text-gray-500'>Click to upload</p>
+                  </div>
+                  <input
+                    type="file"
+                    name='uploadimage'
+                    accept='image/*'
+                    onChange={uploadImage}
+                    className='w-0 h-0'
+                  />
+                </label>
+              </> : <>
+                  <div className='relative h-full '>
+                    <img src={imageAssests} alt="uploaded image" className='w-full h-full object-cover' />
+                    <button type='button' className='absolute bottom-3 right-3 rounded-full p-3 bg-red-500 text-xl cursor-pointer outline-none hover:shadow-md duration-500 transition-all ease-in-out '
+                    onClick={deleteImage}
+                    > <MdDelete className='text-white'/></button>
+                </div>
+              </>}
+            </>
+          }      
         </div>
 
+        <div className='w-full flex flex-col md:flex-row items-center gap-3'>
+
+          <div className='w-full py-2 border-b border-gray-300 flex items-center gap-2'>
+            <MdFoodBank className='text-yellow-600 text-2xl' />
+            <input value={calorise} onChange={(e)=>{setCalorise(e.target.value)}} type="text" required placeholder='Calorise' className='h-full w-full bg-transparent text-lg outline-none border-none placeholder:text-gray-400 text-textColor' />
+          </div>
+
+          <div className='w-full py-2 border-b border-gray-300 flex items-center gap-2'>
+            <MdAttachMoney className='text-yellow-600 text-2xl' />
+            <input value={price} onChange={(e)=>{ setPrice(e.target.value) }} type="text" required placeholder='Price' className='h-full w-full bg-transparent text-lg outline-none border-none placeholder:text-gray-400 text-textColor' />
+          </div>
+        </div>
+        <div className='flex items-center w-full'>
+          <button type='button' className='ml-0 md:ml-auto w-full md:w-auto border-none outline-none bg-yellow-500 px-12 py-2 rounded-lg text-lg text-textColor font-semibold ' onClick={saveDetails}>Save</button>
+        </div>
       </div>
     </div>
   )

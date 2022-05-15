@@ -1,5 +1,5 @@
 import { upload } from '@testing-library/user-event/dist/upload';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { MdFastfood, MdCloudUpload, MdDelete, MdFoodBank, MdAttachMoney } from 'react-icons/md';
@@ -53,7 +53,19 @@ const CreateItem = () => {
   }
 
   const deleteImage = () => {
+    setIsLoading(true)
+    const deleteRef = ref(storage, imageAssests)
+    deleteObject(deleteRef).then(() => {
+      setImageAssests(null)
+      setIsLoading(false)
+        setFields(true)
+        setMsg('Image Deleted Successfully')
+        setAlertStatus('success')
 
+        setTimeout(() => {
+          setFields(false)
+        }, 4000);
+    })
   }
 
   const saveDetails = () => {

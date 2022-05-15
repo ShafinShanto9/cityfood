@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { MdFastfood, MdCloudUpload, MdDelete, MdFoodBank, MdAttachMoney } from 'react-icons/md';
 import { storage } from '../firebase.config';
 import { Categories } from '../utils/data';
+import { saveData } from '../utils/firebaseFunctions';
 import Loader from './Loader';
 
 const CreateItem = () => {
@@ -19,7 +20,7 @@ const CreateItem = () => {
   const [msg, setMsg] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
-  const uploadImage = (e) => { //image upload fuctionality
+  const uploadImage = (e) => { //image upload on firebase cloud  fuctionality
     setIsLoading(true)
     const imageFile = e.target.files[0]
     const storageRef = ref(storage, `Image/${Date.now()}-${imageFile.name}`)
@@ -52,7 +53,7 @@ const CreateItem = () => {
     })
   }
 
-  const deleteImage = () => {
+  const deleteImage = () => { //image delete from firebase cloud  fuctionality
     setIsLoading(true)
     const deleteRef = ref(storage, imageAssests)
     deleteObject(deleteRef).then(() => {
@@ -68,8 +69,60 @@ const CreateItem = () => {
     })
   }
 
-  const saveDetails = () => {
+  const saveDetails = () => { //save other details on firebase cloud
+    setIsLoading(true)
 
+    try {
+
+      if ((!title || !category || !calorise || !price || !imageAssests)) {
+        setFields(true)
+        setMsg("Please fill out all the fields")
+        setAlertStatus('danger')
+        setTimeout(() => {
+          setFields(false)
+        }, 5000);
+      } else {
+        const data = {
+          id: `${Date.now()}`,
+          title,
+          imageURL: imageAssests,
+          category,
+          calorise,
+          price,
+          qty: 1
+        } 
+        saveData(data)
+        setIsLoading(false)
+        setFields(true)
+        setMsg('Data Uploaded Successfully')
+        clearData()
+        setAlertStatus('success')
+
+        setTimeout(() => {
+          setFields(false)
+        }, 4000);
+        saveData(data)
+      }
+      
+    } catch (error) {
+      console.log(error);
+      setFields(true)
+      setMsg("Something goes wrong while uploading")
+      setAlertStatus('danger')
+      setTimeout(() => {
+        setFields(false)
+        setIsLoading(false)
+      }, 4000)
+    }
+
+  }
+
+  const clearData = () => {
+    setTitle("")
+    setImageAssests(null)
+    setCalorise("")
+    setCategory("select category")
+    setPrice("")
   }
 
   return (

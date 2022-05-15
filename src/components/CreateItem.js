@@ -1,6 +1,9 @@
+import { upload } from '@testing-library/user-event/dist/upload';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { MdFastfood, MdCloudUpload, MdDelete, MdFoodBank, MdAttachMoney } from 'react-icons/md';
+import { storage } from '../firebase.config';
 import { Categories } from '../utils/data';
 import Loader from './Loader';
 
@@ -14,10 +17,39 @@ const CreateItem = () => {
   const [fields, setFields] = useState(false)
   const [alertStatus, setAlertStatus] = useState('danger')
   const [msg, setMsg] = useState(null)
-  const [isLoading, SetIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const uploadImage = () => {
+  const uploadImage = (e) => { //image upload fuctionality
+    setIsLoading(true)
+    const imageFile = e.target.files[0]
+    const storageRef = ref(storage, `Image/${Date.now()}-${imageFile.name}`)
+    const uploadData = uploadBytesResumable(storageRef, imageFile)
 
+    uploadData.on('state_changed', (snapshot) => {
+      const uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+    }, (error) => {
+      console.log(error);
+      setFields(true)
+      setMsg("Something goes wrong while uploading")
+      setAlertStatus('danger')
+      setTimeout(() => {
+        setFields(false)
+        setIsLoading(false)
+      }, 4000)
+    }, () => {
+      getDownloadURL(uploadData.snapshot.ref).then(downloadURL => {
+        setImageAssests(downloadURL)
+        setIsLoading(false)
+        setFields(true)
+        setMsg('Image Uploaded Successfully')
+        setAlertStatus('success')
+
+        setTimeout(() => {
+          setFields(false)
+        }, 4000);
+
+      })
+    })
   }
 
   const deleteImage = () => {

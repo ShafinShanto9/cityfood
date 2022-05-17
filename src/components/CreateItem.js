@@ -1,8 +1,7 @@
-import { upload } from '@testing-library/user-event/dist/upload';
 import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import { MdFastfood, MdCloudUpload, MdDelete, MdFoodBank, MdAttachMoney } from 'react-icons/md';
+import { MdAttachMoney, MdCloudUpload, MdDelete, MdFastfood, MdFoodBank } from 'react-icons/md';
 import { storage } from '../firebase.config';
 import { Categories } from '../utils/data';
 import { saveData } from '../utils/firebaseFunctions';
@@ -84,11 +83,11 @@ const CreateItem = () => {
       } else {
         const data = {
           id: `${Date.now()}`,
-          title,
+          title : title,
           imageURL: imageAssests,
-          category,
-          calorise,
-          price,
+          category : category,
+          calorise : calorise,
+          price : price,
           qty: 1
         } 
         saveData(data)
@@ -101,7 +100,7 @@ const CreateItem = () => {
         setTimeout(() => {
           setFields(false)
         }, 4000);
-        saveData(data)
+        
       }
       
     } catch (error) {

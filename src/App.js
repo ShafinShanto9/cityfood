@@ -7,19 +7,19 @@ import MainContainer from './components/MainContainer'
 import NotFound from './components/NotFound'
 import { useStateValue } from './context/StateProvider'
 import { getAllFoodData } from './utils/firebaseFunctions'
+import { actionType } from './context/reducer'
 
 const App = () => {
 
-  const [{ }, dispatch] = useStateValue()
+  const [{ foodItems }, dispatch] = useStateValue()
 
   const fetchData = async () => {
-    try {
       await getAllFoodData().then((data) => {
-      console.log(data)
-    })
-    } catch (error) {
-      console.log(error)
-    }
+        dispatch({
+          type: actionType.SET_FOOD_ITEMS,
+          foodItems : data,
+      })
+    })   
   }
 
   useEffect(() => {

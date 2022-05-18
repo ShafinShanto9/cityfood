@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import Home from './Home';
+import RowContainer from './RowContainer';
 
 const MainContainer = () => {
   return (
@@ -20,7 +21,8 @@ const MainContainer = () => {
               <motion.div whileTap={{scale : 0.75}} className='flex items-center justify-center h-8 w-8 rounded-lg bg-yellow-500 hover:bg-yellow-400 cursor-pointer transition-all duration-100 ease-in-out hover:shadow-lg'> <MdChevronLeft className='text-lg text-white' /> </motion.div>
               <motion.div whileTap={{scale : 0.75}} className='flex items-center justify-center h-8 w-8 rounded-lg bg-yellow-500 hover:bg-yellow-400 cursor-pointer transition-all duration-100 ease-in-out hover:shadow-lg'> <MdChevronRight className='text-lg text-white ' /> </motion.div>
           </div>
-          </div>
+        </div>
+        <RowContainer flag={true} />
       </section>
     </div>
   )

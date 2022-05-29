@@ -18,7 +18,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
       </>}
       {data && data.map(item => (
          <div key={item.id} className='w-300 h-[245px] min-w-[300px] md:w-340 md:min-w-[340px]  p-1 md:p-2 my-12  bg-cardOverlay rounded-lg shadow-md backdrop-blur-lg hover:drop-shadow-lg'>
-              <div className='w-full flex items-center justify-between '>
+              <div className='w-full h-[150] flex items-center justify-between '>
                   <motion.img  whileHover={{scale: 1.2}} className='w-40 drop-shadow-xl object-cover' src={item?.imageURL} alt="" />
                   <motion.div whileTap={{scale: 0.75}} className='h-8 w-8 rounded-full bg-yellow-300 shadow-lg flex items-center justify-center cursor-pointer'>
                     <MdShoppingBag className='text-textColor'/>

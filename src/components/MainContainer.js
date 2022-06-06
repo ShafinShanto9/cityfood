@@ -25,9 +25,9 @@ const MainContainer = () => {
             Our Fish Items For Lunch and Dinner 🐟
           </p>
           <div className='hidden md:flex items-center gap-3'>
-            <motion.div whileTap={{ scale: 0.75 }} className='flex items-center justify-center h-8 w-8 rounded-lg bg-yellow-500 hover:bg-yellow-400 cursor-pointer transition-all duration-100 ease-in-out hover:shadow-lg' onClick={() => { setScrollValue(-300) } }> <MdChevronLeft className='text-lg text-white' /> </motion.div>
+            <motion.div whileTap={{ scale: 0.75 }} className='flex items-center justify-center h-8 w-8 rounded-lg bg-yellow-500 hover:bg-yellow-400 cursor-pointer  hover:shadow-lg' onClick={() => { setScrollValue(-350) } }> <MdChevronLeft className='text-lg text-white' /> </motion.div>
             
-            <motion.div whileTap={{ scale: 0.75 }} className='flex items-center justify-center h-8 w-8 rounded-lg bg-yellow-500 hover:bg-yellow-400 cursor-pointer transition-all duration-100 ease-in-out hover:shadow-lg' onClick={() => { setScrollValue(300) } }
+            <motion.div whileTap={{ scale: 0.75 }} className='flex items-center justify-center h-8 w-8 rounded-lg bg-yellow-500 hover:bg-yellow-400 cursor-pointer  hover:shadow-lg' onClick={() => { setScrollValue(350) } }
             >
               <MdChevronRight className='text-lg text-white ' />
             </motion.div>

@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { useStateValue } from '../context/StateProvider';
+import CartContainer from './CartContainer';
 import Home from './Home';
 import MenuContainer from './MenuContainer';
 import RowContainer from './RowContainer';
@@ -39,6 +40,9 @@ const MainContainer = () => {
       <section className='w-full my-10' id='menu'>
         <MenuContainer/>
       </section>
+
+      <CartContainer/>
+
     </div>
   )
 }

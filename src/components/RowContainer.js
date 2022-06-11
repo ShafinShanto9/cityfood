@@ -12,7 +12,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
   },[scrollValue])
 
   return (
-    <div ref={rowContainer} className={`my-12 w-full flex items-center gap-3 scroll-smooth  ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`} >
+    <div ref={rowContainer} className={`my-12 w-full flex items-center gap-3 scroll-smooth  ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap justify-center'}`} >
       {!data && <>
         <Spinner name="folding-cube" color="orange" /> <p>Please Wait a moments...</p>
       </>}

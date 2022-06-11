@@ -1,14 +1,17 @@
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { IoFastFood } from 'react-icons/io5'
+import { useStateValue } from '../context/StateProvider'
 import { Categories } from '../utils/data'
+import RowContainer from './RowContainer'
 
 const MenuContainer = () => {
 
   const [filter, setFilter] = useState('fruits')
+  const [{ foodItems }, dispatch] = useStateValue()
   
   return (
-    <div className='w-full flex flex-col items-center justify-around'>
+    <section className='w-full flex flex-col items-center justify-around'>
          <p className='text-xl font-semibold capitalize text-headingColor relative
             before:absolute before:rounded-lg before:content before:w-16 before:h-1
             before:-bottom-2 before:left-0 before:bg-yellow-500 transition-all ease-in-out
@@ -40,10 +43,10 @@ const MenuContainer = () => {
           ))}
       </div>
       
-      <div>
-        
+      <div className='w-full '>
+        <RowContainer flag={false} data={ foodItems?.filter((n) => n.category === filter ) }/>
       </div>
-    </div>
+    </section>
   )
 }
 

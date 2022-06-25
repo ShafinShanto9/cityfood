@@ -2,14 +2,25 @@ import { motion } from 'framer-motion'
 import { BiMinus, BiPlus } from "react-icons/bi"
 import { MdOutlineKeyboardBackspace } from "react-icons/md"
 import { RiRefreshFill } from "react-icons/ri"
+import { actionType } from '../context/reducer'
+import { useStateValue } from '../context/StateProvider'
 
 
 const CartContainer = () => {
+
+  const [{ cartShow }, dispatch] = useStateValue()
+  
+  const showCart = () => {
+    dispatch({
+      type: actionType.SET_CART_SHOW,
+      cartShow : !cartShow
+    })
+  }
   return (
     <div className="flex flex-col fixed top-0 right-0 z-[101] h-screen w-full md:w-375 bg-white drop-shadow-md ">
 
       <div className="flex items-center justify-between w-full p-4 cursor-pointer">
-        <motion.div whileTap={{scale: 0.75}}>
+        <motion.div whileTap={{scale: 0.75}} onClick={showCart}>
           <MdOutlineKeyboardBackspace className="text-textColor text-3xl" />
         </motion.div>
         <p className='text-textColor text-lg font-semibold'>Cart Menu</p>

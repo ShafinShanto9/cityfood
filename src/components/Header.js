@@ -1,6 +1,6 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { MdAdd, MdLogout, MdShoppingBag } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { actionType } from '../context/reducer';
@@ -15,7 +15,7 @@ const Header = () => {
   const provider = new GoogleAuthProvider();
   const firebaseAuth = getAuth(app);
 
-  const [{ user }, dispatch] = useStateValue()
+  const [{ user , cartShow}, dispatch] = useStateValue()
   
   const [isMenu, setIsMenu] = useState(false)
 
@@ -44,6 +44,14 @@ const Header = () => {
   }
 
 
+  const showCart = () => {
+    dispatch({
+      type: actionType.SET_CART_SHOW,
+      cartShow : !cartShow
+    })
+  }
+
+
   return (
       <header className='fixed z-50 w-screen p-3 px-4  md:p-6 md:px-16 bg-primary' >
           {/* Desktop And Tablet View */}
@@ -67,7 +75,7 @@ const Header = () => {
             <li className='text-base text-textColor duration-100 transition-all ease-in-out hover:text-headingColor cursor-pointer'>Service</li>
           </motion.ul>
           
-          <div className='relative flex items-center justify-center '>
+          <div className='relative flex items-center justify-center ' onClick={showCart}>
           <MdShoppingBag className='text-textColor text-2xl cursor-pointer' />
           <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
             <p className='text-xs text-textColor font-semibold'>2</p>
@@ -105,7 +113,7 @@ const Header = () => {
         </Link>
         
         <div className='relative flex items-center justify-center gap-7' > 
-            <div className='relative flex items-center justify-center'>
+            <div className='relative flex items-center justify-center' onClick={showCart}>
           <MdShoppingBag className='text-textColor text-2xl cursor-pointer' />
           <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
             <p className='text-xs text-textColor font-semibold'>2</p>

@@ -45,6 +45,9 @@ module.exports = {
         buttonColor: "#FEB400",
         primary: "#f5f3f3",
         cardOverlay: "#FFFF9F",
+        cartBg: "#FFF59D",
+        cartItem: "#6333BD",
+        cartTotal: "#343739"
         
       },
       screens: {

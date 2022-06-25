@@ -42,8 +42,30 @@ const CartContainer = () => {
             </div>
 
           </div>
+        </div>
 
+        <div className='w-full flex-1 bg-gray-200 rounded-t-[2rem] flex flex-col items-center justify-evenly px-8 py-2'>
+          <div className='w-full flex items-center justify-between'>
+            <p className='text-black text-lg'>Sub Total</p>
+            <p className='text-black text-lg'>$ 8.05</p>
           </div>
+          <div className='w-full flex items-center justify-between'>
+            <p className='text-black text-lg'>Delivary</p>
+            <p className='text-black text-lg'>$ 5.05</p>
+          </div>
+          <div className='w-full border-b border-gray-700 my-2'></div>
+          <div className='w-full flex items-center justify-between'>
+            <p className='text-black text-xl font-semibold'>Total</p>
+            <p className='text-black text-xl font-semibold'>$ 13.10</p>
+          </div>
+          <motion.div
+            whileTap={{ scale: 0.6 }}
+            type='button'
+            className='w-full p-2 flex items-center justify-center rounded-full bg-yellow-500 text-black text-lg my-2 font-bold transition-all duration-150 ease-out hover:shadow-lg cursor-pointer'
+          >
+              Check Out
+          </motion.div>
+        </div>
       </div>
     </div>
   )

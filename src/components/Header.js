@@ -15,9 +15,12 @@ const Header = () => {
   const provider = new GoogleAuthProvider();
   const firebaseAuth = getAuth(app);
 
-  const [{ user , cartShow}, dispatch] = useStateValue()
+  const [{ user, cartShow, cartItems }, dispatch] = useStateValue()
+  
+  console.log(cartItems);
   
   const [isMenu, setIsMenu] = useState(false)
+  
 
   // User Login
   const login = async () => {
@@ -77,9 +80,11 @@ const Header = () => {
           
           <div className='relative flex items-center justify-center ' onClick={showCart}>
           <MdShoppingBag className='text-textColor text-2xl cursor-pointer' />
-          <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
-            <p className='text-xs text-textColor font-semibold'>2</p>
-            </div>   
+            {cartItems && (
+              <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
+                <p className='text-xs text-textColor font-semibold'>{ cartItems.length}</p>
+              </div> 
+            ) }  
           </div>
           
           <div className='relative'>  
@@ -115,9 +120,11 @@ const Header = () => {
         <div className='relative flex items-center justify-center gap-7' > 
             <div className='relative flex items-center justify-center' onClick={showCart}>
           <MdShoppingBag className='text-textColor text-2xl cursor-pointer' />
-          <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
-            <p className='text-xs text-textColor font-semibold'>2</p>
-            </div>   
+          {cartItems && cartItems > 0 && (
+              <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
+                <p className='text-xs text-textColor font-semibold'>{ cartItems.length}</p>
+              </div> 
+            ) }     
           </div>
 
 

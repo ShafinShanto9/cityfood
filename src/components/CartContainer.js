@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
-import { BiMinus, BiPlus } from "react-icons/bi"
 import { MdOutlineKeyboardBackspace } from "react-icons/md"
 import { RiRefreshFill } from "react-icons/ri"
 import { actionType } from '../context/reducer'
 import { useStateValue } from '../context/StateProvider'
 import emptyCart from "../img/emptyCart.svg"
+import CartItems from './CartItems'
 
 
 const CartContainer = () => {
@@ -39,28 +39,7 @@ const CartContainer = () => {
           {/*  Show Single Cart Items */}
           {
             cartItems?.map((cart) => (              
-                <div key={cart.id} className='w-full p-1 px-2 rounded-lg bg-cartBg flex items-center gap-2'>
-                <img src={cart.imageURL}
-                  className='h-20 w-20 max-w-[60px] rounded-full object-contain' alt="" srcset="" />
-                
-                <div className='flex flex-col gap-2'>
-                  <p className='text-base text-black'> {cart?.title} </p>
-                  <p className='text-sm block text-black text-semibold'> $ {cart?.price} </p>
-                </div>
-
-                <div className='group flex items-center gap-2 ml-auto cursor-pointer'> 
-                  <motion.div whileTap={{scale: 0.6}}>
-                    <BiMinus className='text-black'/>
-                  </motion.div>
-                  <p className='w-5 h-5 rounded-sm bg-cartBg text-black flex items-center justify-center '>
-                    {cart?.qty}
-                  </p>
-                  <motion.div whileTap={{scale: 0.6}}>
-                    <BiPlus className='text-black'/>
-                  </motion.div>
-                </div>
-
-              </div>
+                <CartItems cart={cart} />
             ))
           }
         </div>
